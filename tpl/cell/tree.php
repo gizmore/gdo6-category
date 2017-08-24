@@ -22,7 +22,7 @@ foreach ($roots as $root)
 ?>
 <div class="gdo-tree"
  layout="column" layout-fill layout-padding flex="100" layout-align="start start"
- ng-controller="GWFTreeCtrl"
+ ng-controller="GDOTreeCtrl"
  ng-init='init("#<?= $id; ?>" , <?= json_encode($json); ?>)'>
 <?php
 foreach ($roots as $root)
