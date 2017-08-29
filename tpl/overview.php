@@ -1,8 +1,8 @@
 <?php
 use GDO\Category\Category;
 use GDO\Category\Module_Category;
-use GDO\Table\GDO_Table;
-use GDO\UI\GDO_Button;
+use GDO\Table\GDT_Table;
+use GDO\UI\GDT_Button;
 
 $gdo = Category::table();
 $module = Module_Category::instance();
@@ -10,11 +10,11 @@ echo $module->renderAdminTabs();
 
 # Render table with this query
 $query = $gdo->select('*');
-$table = GDO_Table::make();
+$table = GDT_Table::make();
 $table->addFields(array(
 	$gdo->gdoColumn('cat_id'),
 	$gdo->gdoColumn('cat_name'),
-	GDO_Button::make('edit'),
+	GDT_Button::make('edit'),
 ));
 $table->query($query);
 $table->paginate(true, 50);

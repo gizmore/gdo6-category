@@ -2,8 +2,8 @@
 namespace GDO\Category;
 
 use GDO\DB\Cache;
-use GDO\DB\GDO_AutoInc;
-use GDO\Type\GDO_Name;
+use GDO\DB\GDT_AutoInc;
+use GDO\Type\GDT_Name;
 /**
  * Category table inherits Tree.
  * 
@@ -21,8 +21,8 @@ final class Category extends Tree
 	public function gdoColumns()
 	{
 		return array_merge(array(
-			GDO_AutoInc::make('cat_id'),
-			GDO_Name::make('cat_name'),
+			GDT_AutoInc::make('cat_id'),
+			GDT_Name::make('cat_name'),
 		), parent::gdoColumns());
 	}
 
@@ -56,11 +56,11 @@ final class Category extends Tree
 	##############
 	public function renderCell()
 	{
-		return GDO_Category::make('cat')->gdo($this)->renderCell();
+		return GDT_Category::make('cat')->gdo($this)->renderCell();
 	}
 	public function renderChoice()
 	{
-		return GDO_Category::make('cat')->gdo($this)->renderChoice();
+		return GDT_Category::make('cat')->gdo($this)->renderChoice();
 		
 	}
 }

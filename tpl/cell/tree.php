@@ -1,8 +1,8 @@
 <?php
-use GDO\Category\GDO_Tree;
+use GDO\Category\GDT_Tree;
 use GDO\Category\Tree;
 
-$field instanceof GDO_Tree;
+$field instanceof GDT_Tree;
 ?>
 <?php
 $id = 'gwftreecbx_'.$field->name;

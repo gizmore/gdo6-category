@@ -1,6 +1,6 @@
 <?php
-use GDO\Category\GDO_Category;
-$field instanceof GDO_Category;
+use GDO\Category\GDT_Category;
+$field instanceof GDT_Category;
 ?>
 <?php
 $category = $field->gdo; //getCategory();

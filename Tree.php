@@ -2,8 +2,8 @@
 namespace GDO\Category;
 
 use GDO\DB\GDO;
-use GDO\DB\GDO_Object;
-use GDO\Type\GDO_Int;
+use GDO\DB\GDT_Object;
+use GDO\Type\GDT_Int;
 /**
  * Abstract Tree class stolen from http://articles.sitepoint.com/article/hierarchical-data-database/3
  * @author gizmore
@@ -20,10 +20,10 @@ class Tree extends GDO
 	{
 		$pre = $this->gdoTreePrefix();
 		return array(
-			GDO_Object::make($pre.'_parent')->table(GDO::tableFor($this->gdoClassName())),
-			GDO_Int::make($pre.'_depth')->unsigned()->bytes(1),
-			GDO_Int::make($pre.'_left')->unsigned(),
-			GDO_Int::make($pre.'_right')->unsigned(),
+			GDT_Object::make($pre.'_parent')->table(GDO::tableFor($this->gdoClassName())),
+			GDT_Int::make($pre.'_depth')->unsigned()->bytes(1),
+			GDT_Int::make($pre.'_left')->unsigned(),
+			GDT_Int::make($pre.'_right')->unsigned(),
 		);
 	}
 	public function getIDColumn() { return $this->gdoPrimaryKeyColumn()->identifier(); }

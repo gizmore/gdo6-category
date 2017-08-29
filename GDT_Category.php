@@ -1,14 +1,14 @@
 <?php
 namespace GDO\Category;
-use GDO\Template\GDO_Template;
-use GDO\DB\GDO_ObjectSelect;
+use GDO\Template\GDT_Template;
+use GDO\DB\GDT_ObjectSelect;
 
 /**
  * A selection for a Category object.
  * @author gizmore
  * @see Category
  */
-final class GDO_Category extends GDO_ObjectSelect
+final class GDT_Category extends GDT_ObjectSelect
 {
 	public function defaultLabel() { return $this->label('category'); }
 	
@@ -32,12 +32,12 @@ final class GDO_Category extends GDO_ObjectSelect
 	
 	public function renderCell()
 	{
-		return GDO_Template::php('Category', 'cell/category.php', ['field'=>$this]);
+		return GDT_Template::php('Category', 'cell/category.php', ['field'=>$this]);
 	}
 	
 	public function renderChoice()
 	{
-		return GDO_Template::php('Category', 'choice/category.php', ['field'=>$this]);
+		return GDT_Template::php('Category', 'choice/category.php', ['field'=>$this]);
 	}
 	
 }
