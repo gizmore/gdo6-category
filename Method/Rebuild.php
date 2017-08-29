@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Category\Method;
 
-use GDO\Category\Category;
+use GDO\Category\GDO_Category;
 use GDO\Category\Module_Category;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
@@ -26,7 +26,7 @@ final class Rebuild extends MethodForm
 	
 	public function formValidated(GDT_Form $form)
 	{
-		Category::table()->rebuildFullTree();
+	    GDO_Category::table()->rebuildFullTree();
 		return $this->message('msg_cat_tree_rebuilt');
 	}
 	

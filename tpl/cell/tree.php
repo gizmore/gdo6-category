@@ -1,13 +1,13 @@
 <?php
 use GDO\Category\GDT_Tree;
-use GDO\Category\Tree;
+use GDO\Category\GDO_Tree;
 
 $field instanceof GDT_Tree;
 ?>
 <?php
 $id = 'gwftreecbx_'.$field->name;
 $gdo = $field->gdo;
-$gdo instanceof Tree;
+$gdo instanceof GDO_Tree;
 # Build  Tree JSON
 $json = [];
 list($tree, $roots) = $gdo->full();
@@ -34,7 +34,7 @@ foreach ($roots as $root)
 </div>
 
 <?php
-function _gwfTreeRecurse(Tree $leaf)
+function _gwfTreeRecurse(GDO_Tree $leaf)
 {
 	$r2 = str_repeat('&nbsp;', $leaf->getDepth()*6);
 	if ($leaf->children)

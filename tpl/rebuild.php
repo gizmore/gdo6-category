@@ -1,7 +1,7 @@
 <?php
-use GDO\Category\Category;
+use GDO\Category\GDO_Category;
 use GDO\Category\GDT_Tree;
 
-$gdo = Category::table();
+$gdo = GDO_Category::table();
 
 echo GDT_Tree::make('tree')->gdo($gdo)->renderCell();

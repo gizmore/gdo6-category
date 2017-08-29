@@ -8,14 +8,14 @@ use GDO\Type\GDT_Int;
  * Abstract Tree class stolen from http://articles.sitepoint.com/article/hierarchical-data-database/3
  * @author gizmore
  */
-class Tree extends GDO
+class GDO_Tree extends GDO
 {
 	public function gdoTreePrefix() { return 'tree'; }
 
 	###########
 	### GDO ###
 	###########
-	public function gdoAbstract() { return $this->gdoClassName() === 'GDO\Category\Tree'; }
+	public function gdoAbstract() { return $this->gdoClassName() === 'GDO\Category\GDO_Tree'; }
 	public function gdoColumns()
 	{
 		$pre = $this->gdoTreePrefix();
@@ -56,7 +56,7 @@ class Tree extends GDO
 	### Connect ###
 	###############
 	/**
-	 * @return Tree[]
+	 * @return self[]
 	 */
 	public function all()
 	{
@@ -71,7 +71,7 @@ class Tree extends GDO
 		$tree = $this->table()->all();
 		foreach ($tree as $leaf)
 		{
-			$leaf instanceof Tree;
+		    $leaf instanceof GDO_Tree;
 			if (isset($tree[$leaf->getParentID()]))
 			{
 				$parent = $tree[$leaf->getParentID()];

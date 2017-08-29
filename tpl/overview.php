@@ -1,10 +1,10 @@
 <?php
-use GDO\Category\Category;
+use GDO\Category\GDO_Category;
 use GDO\Category\Module_Category;
 use GDO\Table\GDT_Table;
 use GDO\UI\GDT_Button;
 
-$gdo = Category::table();
+$gdo = GDO_Category::table();
 $module = Module_Category::instance();
 echo $module->renderAdminTabs(); 
 

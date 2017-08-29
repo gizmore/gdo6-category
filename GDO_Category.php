@@ -5,13 +5,13 @@ use GDO\DB\Cache;
 use GDO\DB\GDT_AutoInc;
 use GDO\Type\GDT_Name;
 /**
- * Category table inherits Tree.
+ * GDO_Category table inherits Tree.
  * 
  * @author gizmore
  * @since 2.0
  * @version 5.0
  */
-final class Category extends Tree
+final class GDO_Category extends GDO_Tree
 {
 	###########
 	### GDO ###
@@ -38,15 +38,15 @@ final class Category extends Tree
 	#############
 	public function rebuildFullTree()
 	{
-		Cache::unset('gwf_category');
+		Cache::unset('gdo_category');
 		parent::rebuildFullTree();
 	}
 	public function all()
 	{
-		if (!($cache = Cache::get('gwf_category')))
+		if (!($cache = Cache::get('gdo_category')))
 		{
 			$cache = self::table()->select('*')->order('cat_left')->exec()->fetchAllArray2dObject();
-			Cache::set('gwf_category', $cache);
+			Cache::set('gdo_category', $cache);
 		}
 		return $cache;
 	}

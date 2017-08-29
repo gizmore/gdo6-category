@@ -1,14 +1,14 @@
 <?php
 namespace GDO\Category;
 
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 
-final class Module_Category extends Module
+final class Module_Category extends GDO_Module
 {
 	public $module_priority = 30;
 	
 	public function onLoadLanguage() { $this->loadLanguage('lang/category'); }
-	public function getClasses() { return ['GDO\Category\Category']; }
+	public function getClasses() { return ['GDO\Category\GDO_Category']; }
 	public function href_administrate_module() { return href('Category', 'Overview'); }
 	
 	##############

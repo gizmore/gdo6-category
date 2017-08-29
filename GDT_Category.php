@@ -14,11 +14,11 @@ final class GDT_Category extends GDT_ObjectSelect
 	
 	public function __construct()
 	{
-		$this->table(Category::table());
+	    $this->table(GDO_Category::table());
 	}
 	
 	/**
-	 * @return Category
+	 * @return GDO_Category
 	 */
 	public function getCategory()
 	{
