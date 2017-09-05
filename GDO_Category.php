@@ -43,7 +43,7 @@ final class GDO_Category extends GDO_Tree
 	}
 	public function all()
 	{
-		if (!($cache = Cache::get('gdo_category')))
+		if (false === ($cache = Cache::get('gdo_category')))
 		{
 			$cache = self::table()->select('*')->order('cat_left')->exec()->fetchAllArray2dObject();
 			Cache::set('gdo_category', $cache);
