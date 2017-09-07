@@ -65,6 +65,10 @@ class GDO_Tree extends GDO
 	
 	public $children = [];
 	
+	/**
+	 * 
+	 * @return self[][]
+	 */
 	public function full()
 	{
 		$roots = [];
