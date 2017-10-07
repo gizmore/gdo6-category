@@ -3,7 +3,7 @@ namespace GDO\Category;
 
 use GDO\Core\GDO;
 use GDO\DB\GDT_Object;
-use GDO\Type\GDT_Int;
+use GDO\DB\GDT_Int;
 /**
  * Abstract Tree class stolen from http://articles.sitepoint.com/article/hierarchical-data-database/3
  * @author gizmore

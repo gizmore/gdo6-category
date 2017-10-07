@@ -25,7 +25,7 @@ final class Add extends MethodForm
 	{
 	    GDO_Category::blank($form->getFormData())->insert();
 	    GDO_Category::table()->rebuildFullTree();
-		Cache::unset('gdo_category');
+		Cache::remove('gdo_category');
 		return $this->message('msg_category_added')->add(Website::redirectMessage(href('Category', 'Overview')));
 	}
 }

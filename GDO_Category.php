@@ -3,7 +3,7 @@ namespace GDO\Category;
 
 use GDO\DB\Cache;
 use GDO\DB\GDT_AutoInc;
-use GDO\Type\GDT_Name;
+use GDO\DB\GDT_Name;
 /**
  * GDO_Category table inherits Tree.
  * 
@@ -38,7 +38,7 @@ final class GDO_Category extends GDO_Tree
 	#############
 	public function rebuildFullTree()
 	{
-		Cache::unset('gdo_category');
+		Cache::remove('gdo_category');
 		parent::rebuildFullTree();
 	}
 	public function all()

@@ -2,7 +2,7 @@
 namespace GDO\Category;
 use GDO\DB\WithObject;
 use GDO\Form\GDT_Select;
-use GDO\Template\GDT_Template;
+use GDO\Core\GDT_Template;
 
 /**
  * Tree view.

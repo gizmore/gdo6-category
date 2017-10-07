@@ -1,6 +1,6 @@
 <?php
 namespace GDO\Category;
-use GDO\Template\GDT_Template;
+use GDO\Core\GDT_Template;
 use GDO\DB\GDT_ObjectSelect;
 
 /**
