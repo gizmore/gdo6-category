@@ -11,7 +11,7 @@ echo $module->renderAdminTabs();
 # Render table with this query
 $query = $gdo->select('*');
 $table = GDT_Table::make();
-$table->addFields(array(
+$table->addHeaders(array(
 	$gdo->gdoColumn('cat_id'),
 	$gdo->gdoColumn('cat_name'),
 	GDT_Button::make('edit'),
