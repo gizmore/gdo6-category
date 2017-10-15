@@ -36,9 +36,4 @@ final class GDT_Category extends GDT_ObjectSelect
 		return GDT_Template::php('Category', 'cell/category.php', ['field'=>$this]);
 	}
 	
-	public function renderChoice()
-	{
-		return GDT_Template::php('Category', 'choice/category.php', ['field'=>$this]);
-	}
-	
 }
