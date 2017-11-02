@@ -63,6 +63,9 @@ class GDO_Tree extends GDO
 		return $this->table()->select()->order($this->getLeftColumn())->exec()->fetchAllArray2dObject();
 	}
 	
+	/**
+	 * @var self[]
+	 */
 	public $children = [];
 	
 	/**
