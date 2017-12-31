@@ -1,7 +1,7 @@
 <?php
 return array(
 'category' => 'Category',
-'sel_no_category' => 'no category',
+'no_category' => 'no category',
 ##########################################
 'ft_category_add' => '[%s] New Category',
 'select_parent_category' => 'Select parent category',
