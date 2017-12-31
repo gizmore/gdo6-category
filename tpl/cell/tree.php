@@ -12,21 +12,7 @@ foreach ($roots as $root)
 {
 	$json[] = $root->toJSON();
 }
-?>
-<div class="gdo-tree"
- layout="column" layout-fill layout-padding flex="100" layout-align="start start"
- ng-controller="GDOTreeCtrl"
- ng-init='init("#<?= $id; ?>" , <?= json_encode($json); ?>)'>
-<?php
-foreach ($roots as $root)
-{
-	_gwfTreeRecurse($root);
-}
-?>
-<input type="hidden" id="<?= $id; ?>" />
-</div>
 
-<?php
 if (!function_exists('_gwfTreeRecurse'))
 {
     function _gwfTreeRecurse(GDO_Tree $leaf)
@@ -49,3 +35,17 @@ if (!function_exists('_gwfTreeRecurse'))
         }
     }
 }
+?>
+<div class="gdo-tree"
+ layout="column" layout-fill layout-padding flex="100" layout-align="start start"
+ ng-controller="GDOTreeCtrl"
+ ng-init='init("#<?= $id; ?>" , <?= json_encode($json); ?>)'>
+<?php
+foreach ($roots as $root)
+{
+	_gwfTreeRecurse($root);
+}
+?>
+<input type="hidden" id="<?= $id; ?>" />
+</div>
+
