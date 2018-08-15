@@ -78,7 +78,7 @@ class GDO_Tree extends GDO
 		$tree = $this->table()->all();
 		foreach ($tree as $leaf)
 		{
-		    $leaf instanceof GDO_Tree;
+			$leaf instanceof GDO_Tree;
 			if (isset($tree[$leaf->getParentID()]))
 			{
 				$parent = $tree[$leaf->getParentID()];
@@ -122,7 +122,7 @@ class GDO_Tree extends GDO
 	###############
 	public function gdoAfterCreate()
 	{
-	    $this->rebuildFullTree();
+		$this->rebuildFullTree();
 	}
 	
 	public function rebuildFullTree()

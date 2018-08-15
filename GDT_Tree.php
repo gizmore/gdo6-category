@@ -13,7 +13,7 @@ use GDO\Core\GDT_Template;
  */
 class GDT_Tree extends GDT_Select
 {
-    use WithObject;
+	use WithObject;
 
 	public function renderCell()
 	{
@@ -22,7 +22,7 @@ class GDT_Tree extends GDT_Select
 	
 	public function render()
 	{
-	    return GDT_Template::php('Category', 'form/tree.php', ['field' => $this]);
+		return GDT_Template::php('Category', 'form/tree.php', ['field' => $this]);
 	}
 	
 }

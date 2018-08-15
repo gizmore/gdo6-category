@@ -26,7 +26,7 @@ final class Rebuild extends MethodForm
 	
 	public function formValidated(GDT_Form $form)
 	{
-	    GDO_Category::table()->rebuildFullTree();
+		GDO_Category::table()->rebuildFullTree();
 		return $this->message('msg_cat_tree_rebuilt');
 	}
 	
