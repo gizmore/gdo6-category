@@ -18,6 +18,8 @@ use GDO\Form\GDT_AntiCSRF;
  */
 final class Crud extends MethodCrud
 {
+	public function getPermission() { return 'staff'; }
+	
 	public function gdoTable()
 	{
 		return GDO_Category::table();

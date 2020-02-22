@@ -12,6 +12,8 @@ use GDO\Form\MethodForm;
 
 final class Add extends MethodForm
 {
+	public function getPermission() { return 'staff'; }
+	
 	public function createForm(GDT_Form $form)
 	{
 		$table = GDO_Category::table();
