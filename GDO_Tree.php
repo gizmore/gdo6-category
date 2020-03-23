@@ -4,6 +4,7 @@ namespace GDO\Category;
 use GDO\Core\GDO;
 use GDO\DB\GDT_Object;
 use GDO\DB\GDT_Int;
+use GDO\DB\GDT_String;
 /**
  * Abstract Tree class stolen from http://articles.sitepoint.com/article/hierarchical-data-database/3
  * @author gizmore
@@ -21,6 +22,7 @@ class GDO_Tree extends GDO
 		$pre = $this->gdoTreePrefix();
 		return array(
 			GDT_Object::make($pre.'_parent')->table(GDO::tableFor($this->gdoClassName())),
+			GDT_String::make($pre.'_path')->ascii()->max(64),
 			GDT_Int::make($pre.'_depth')->unsigned()->bytes(1),
 			GDT_Int::make($pre.'_left')->unsigned(),
 			GDT_Int::make($pre.'_right')->unsigned(),
@@ -34,6 +36,9 @@ class GDO_Tree extends GDO
 	public function getDepthColumn() { return $this->gdoTreePrefix().'_depth'; }
 	public function getDepth() { return $this->getVar($this->getDepthColumn()); }
 	
+	public function getPathColumn() { return $this->gdoTreePrefix().'_path'; }
+	public function getPath() { return $this->getVar($this->getPathColumn()); }
+	
 	public function getLeftColumn() { return $this->gdoTreePrefix().'_left'; }
 	public function getLeft() { return $this->getVar($this->getLeftColumn()); }
 
@@ -45,7 +50,7 @@ class GDO_Tree extends GDO
 	################
 	public function getTree()
 	{
-		$pre = $this->getColumnPrefix();
+		$pre = $this->gdoTreePrefix();
 		$left = $pre.'_left';
 		$l = $this->getLeft();
 		$r = $this->getRight();
@@ -127,7 +132,13 @@ class GDO_Tree extends GDO
 	
 	public function rebuildFullTree()
 	{
-		return $this->rebuildTree(null, 1, 0);
+		$this->rebuildTree(null, 1, 0);
+		
+		list($tree, $roots) = $this->full();
+		foreach ($roots as $leaf)
+		{
+			$this->rebuildPath($leaf);
+		}
 	}
 
 	private function rebuildTree($parent, $left, $depth)
@@ -151,7 +162,19 @@ class GDO_Tree extends GDO
 		{
 			$this->table()->update()->set("$l=$left, $r=$right, $d=$depth")->where("$idc=$parent")->exec();
 		}
-		
-		return $right+1;  
+		return $right+1;
+	}
+	
+	private function rebuildPath(GDO_Tree $leaf, $path='-')
+	{
+		$path = $path . $leaf->getID() . '-';
+		$leaf->saveVar($this->getPathColumn(), $path);
+		if ($leaf->children)
+		{
+			foreach ($leaf->children as $child)
+			{
+				$this->rebuildPath($child, $path);
+			}
+		}
 	}
 }
