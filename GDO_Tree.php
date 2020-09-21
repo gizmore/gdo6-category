@@ -54,7 +54,7 @@ class GDO_Tree extends GDO
 		$left = $pre.'_left';
 		$l = $this->getLeft();
 		$r = $this->getRight();
-		return $this->select('*')->where("$left BETWEEN $l AND $r")->order($left)->exec()->fetchAllObjects();
+		return $this->select('*')->where("$left BETWEEN $l AND $r")->orderASC($left)->exec()->fetchAllObjects();
 	}
 	
 	###############
@@ -65,7 +65,7 @@ class GDO_Tree extends GDO
 	 */
 	public function all()
 	{
-		return $this->table()->select()->order($this->getLeftColumn())->exec()->fetchAllArray2dObject();
+		return $this->table()->select()->orderASC($this->getLeftColumn())->exec()->fetchAllArray2dObject();
 	}
 	
 	/**
