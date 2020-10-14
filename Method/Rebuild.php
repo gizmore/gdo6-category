@@ -7,13 +7,19 @@ use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
+use GDO\Core\MethodAdmin;
 
 final class Rebuild extends MethodForm
 {
-	public function execute()
+    use MethodAdmin;
+    
+    public function execute()
 	{
 		$module = Module_Category::instance();
-		return $module->renderAdminTabs()->add(parent::execute())->add($this->renderTree());
+		return $this->renderNavBar()->
+            add($module->renderAdminTabs())->
+    		add(parent::execute())->
+    		add($this->renderTree());
 	}
 	
 	public function createForm(GDT_Form $form)

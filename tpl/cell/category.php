@@ -1,9 +1,6 @@
-<?php
-use GDO\Category\GDT_Category;
-$field instanceof GDT_Category;
-?>
-<?php
-if ($category = $field->getCategory())
+<?phpuse GDO\Category\GDT_Category;
+/** @var $field GDT_Category **/
+if ($category = $field->getCategory())
 {
 	echo $category->displayName();
 }

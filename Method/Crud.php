@@ -7,8 +7,8 @@ use GDO\Form\GDT_Form;
 use GDO\Core\GDO;
 use GDO\DB\Cache;
 use GDO\Category\GDT_Category;
-use GDO\Form\GDT_Submit;
-use GDO\Form\GDT_AntiCSRF;
+use GDO\Core\MethodAdmin;
+use GDO\Category\Module_Category;
 
 /**
  * Add and edit categories.
@@ -18,7 +18,17 @@ use GDO\Form\GDT_AntiCSRF;
  */
 final class Crud extends MethodCrud
 {
+    use MethodAdmin;
+    
 	public function getPermission() { return 'staff'; }
+	
+	public function renderPage()
+	{
+	    
+	    return $this->renderNavBar()->
+	       add(Module_Category::instance()->renderAdminTabs())->
+	       add(parent::renderPage());
+	}
 	
 	public function gdoTable()
 	{
@@ -36,9 +46,8 @@ final class Crud extends MethodCrud
 		$form->addFields(array(
 			$table->gdoColumn('cat_name'),
 			GDT_Category::make('cat_parent')->emptyLabel('select_parent_category'),
-			GDT_Submit::make(),
-			GDT_AntiCSRF::make(),
 		));
+		$this->createFormButtons($form);
 	}
 	
 	public function afterCreate(GDT_Form $form, GDO $gdo) { $this->afterChange($gdo); }

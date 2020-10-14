@@ -2,13 +2,16 @@
 namespace GDO\Category\Method;
 
 use GDO\Core\Method;
+use GDO\Core\MethodAdmin;
 
 final class Overview extends Method
 {
-	public function getPermission() { return 'staff'; }
+    use MethodAdmin;
+    
+    public function getPermission() { return 'staff'; }
 	
 	public function execute()
 	{
-		return $this->templatePHP('overview.php');
+		return $this->renderNavBar()->add($this->templatePHP('overview.php'));
 	}
 }

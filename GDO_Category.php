@@ -31,7 +31,7 @@ final class GDO_Category extends GDO_Tree
 	##############
 	public function getName() { return $this->getVar('cat_name'); }
 	public function displayName() { return html($this->getName()); }
-	public function href_edit() { return href('Category', 'Edit', '&id='.$this->getID()); }
+	public function href_btn_edit() { return href('Category', 'Crud', '&id='.$this->getID()); }
 
 	#############
 	### Cache ###

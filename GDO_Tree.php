@@ -81,6 +81,12 @@ class GDO_Tree extends GDO
 	{
 		$roots = [];
 		$tree = $this->table()->all();
+		
+		foreach ($tree as $leaf)
+		{
+		    $leaf->children = [];
+		}
+		
 		foreach ($tree as $leaf)
 		{
 			$leaf instanceof GDO_Tree;
@@ -95,6 +101,11 @@ class GDO_Tree extends GDO
 			}
 		}
 		return [$tree, $roots];
+	}
+	
+	public function fullRoots()
+	{
+	    return $this->full()[1];
 	}
 	
 	public function toJSON()
@@ -134,7 +145,7 @@ class GDO_Tree extends GDO
 	{
 		$this->rebuildTree(null, 1, 0);
 		
-		list($tree, $roots) = $this->full();
+		$roots = $this->fullRoots();
 		foreach ($roots as $leaf)
 		{
 			$this->rebuildPath($leaf);

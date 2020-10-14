@@ -14,8 +14,8 @@ $table = GDT_Table::make();
 $table->addHeaders(array(
 	$gdo->gdoColumn('cat_id'),
 	$gdo->gdoColumn('cat_name'),
-	GDT_Button::make('edit'),
+	GDT_Button::make('btn_edit'),
 ));
 $table->query($query);
-$table->paginate(true, 50);
+$table->paginate(true);
 echo $table->render();

@@ -1,6 +1,7 @@
 <?php
 return array(
 'category' => 'Category',
+'gdo_category' => 'Category',
 'no_category' => 'no category',
 ##########################################
 'ft_category_add' => 'New Category',
@@ -9,4 +10,5 @@ return array(
 ##########################################
 'ft_category_rebuild' => 'Rebuild category tree',
 'msg_cat_tree_rebuilt' => 'The category tree has been rebuilt',
+'tree' => 'Tree',
 );
