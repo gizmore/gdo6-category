@@ -11,4 +11,5 @@ return array(
 'ft_category_rebuild' => 'Ricostruire l´albero delle categorie',
 'msg_cat_tree_rebuilt' => 'L´albero delle categorie é stato ricostruito',
 'tree' => 'Albero',
+'sel_no_category' => 'Nessuna categoria',
 );

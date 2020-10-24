@@ -11,4 +11,5 @@ return array(
 'ft_category_rebuild' => 'Rebuild category tree',
 'msg_cat_tree_rebuilt' => 'The category tree has been rebuilt',
 'tree' => 'Tree',
+'sel_no_category' => 'No category',
 );

@@ -11,4 +11,5 @@ return array(
 'ft_category_rebuild' => 'Den Kategorie-Baum neu aufbauen',
 'msg_cat_tree_rebuilt' => 'Der Kategorie-Baum wurde neu afgebaut',
 'tree' => 'Baum',
+'sel_no_category' => 'Keine Kategorie',
 );

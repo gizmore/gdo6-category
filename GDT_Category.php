@@ -15,6 +15,7 @@ final class GDT_Category extends GDT_ObjectSelect
 	public function __construct()
 	{
 		$this->table(GDO_Category::table());
+		$this->icon('folder');
 		$this->emptyLabel = 'sel_no_category';
 	}
 	
