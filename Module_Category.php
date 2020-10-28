@@ -5,7 +5,7 @@ use GDO\Core\GDO_Module;
 
 final class Module_Category extends GDO_Module
 {
-	public $module_priority = 30;
+	public $module_priority = 20;
 	
 	public function onLoadLanguage() { $this->loadLanguage('lang/category'); }
 	public function getClasses() { return ['GDO\Category\GDO_Category']; }
