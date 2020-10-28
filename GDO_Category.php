@@ -48,6 +48,10 @@ final class GDO_Category extends GDO_Tree
 			$cache = self::table()->select('*')->orderASC('cat_left')->exec()->fetchAllArray2dObject();
 			Cache::set('gdo_category', $cache);
 		}
+		else
+		{
+		    Cache::heat('gdo_category', $cache);
+		}
 		return $cache;
 	}
 	
