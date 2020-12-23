@@ -12,7 +12,7 @@ final class GDT_Category extends GDT_ObjectSelect
 {
 	public function defaultLabel() { return $this->label('category'); }
 	
-	public function __construct()
+	protected function __construct()
 	{
 		$this->table(GDO_Category::table());
 		$this->icon('folder');

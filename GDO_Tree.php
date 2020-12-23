@@ -74,7 +74,7 @@ class GDO_Tree extends GDO
 	public $children = [];
 	
 	/**
-	 * 
+	 * Get all items as all and only roots (those with no parent)
 	 * @return self[][]
 	 */
 	public function full()
@@ -90,9 +90,10 @@ class GDO_Tree extends GDO
 		foreach ($tree as $leaf)
 		{
 			$leaf instanceof GDO_Tree;
-			if (isset($tree[$leaf->getParentID()]))
+			$pid = $leaf->getParentID();
+			if (isset($tree[$pid]))
 			{
-				$parent = $tree[$leaf->getParentID()];
+				$parent = $tree[$pid];
 				$parent->children[] = $leaf;
 			}
 			else
