@@ -7,6 +7,7 @@ use GDO\DB\GDT_Int;
 use GDO\DB\GDT_String;
 /**
  * Abstract Tree class stolen from http://articles.sitepoint.com/article/hierarchical-data-database/3
+ * To select a partial of the tree look for items that have a LEFT between parent left and right.
  * @author gizmore
  */
 class GDO_Tree extends GDO
@@ -22,10 +23,11 @@ class GDO_Tree extends GDO
 		$pre = $this->gdoTreePrefix();
 		return array(
 			GDT_Object::make($pre.'_parent')->table(GDO::tableFor($this->gdoClassName())),
-			GDT_String::make($pre.'_path')->ascii()->max(64),
+			GDT_String::make($pre.'_path')->binary()->max(128),
 			GDT_Int::make($pre.'_depth')->unsigned()->bytes(1),
 			GDT_Int::make($pre.'_left')->unsigned(),
 			GDT_Int::make($pre.'_right')->unsigned(),
+// 		    @TODO: create index on _left
 		);
 	}
 	public function getIDColumn() { return $this->gdoPrimaryKeyColumn()->identifier(); }
@@ -48,13 +50,20 @@ class GDO_Tree extends GDO
 	################
 	### Get Tree ###
 	################
+	public function getTreeIDWhereClause()
+	{
+	    $pre = $this->gdoTreePrefix();
+	    $left = $pre.'_left';
+	    $l = $this->getLeft();
+	    $r = $this->getRight();
+	    return "$left BETWEEN $l AND $r";
+	}
+	
 	public function getTree()
 	{
-		$pre = $this->gdoTreePrefix();
-		$left = $pre.'_left';
-		$l = $this->getLeft();
-		$r = $this->getRight();
-		return $this->select('*')->where("$left BETWEEN $l AND $r")->orderASC($left)->exec()->fetchAllObjects();
+	    $pre = $this->gdoTreePrefix();
+	    $left = $pre.'_left';
+	    return $this->select('*')->where($this->getTreeIDWhereClause())->orderASC($left)->exec()->fetchAllObjects();
 	}
 	
 	###############
@@ -79,6 +88,11 @@ class GDO_Tree extends GDO
 	 */
 	public function full()
 	{
+// 	    static $result = null;
+// 	    if ($result !== null)
+// 	    {
+// 	        return $result;
+// 	    }
 		$roots = [];
 		$tree = $this->table()->all();
 		
@@ -101,7 +115,8 @@ class GDO_Tree extends GDO
 				$roots[] = $leaf;
 			}
 		}
-		return [$tree, $roots];
+		$result = [$tree, $roots];
+		return $result;
 	}
 	
 	public function fullRoots()
