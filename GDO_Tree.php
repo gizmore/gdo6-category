@@ -5,6 +5,7 @@ use GDO\Core\GDO;
 use GDO\DB\GDT_Object;
 use GDO\DB\GDT_Int;
 use GDO\DB\GDT_String;
+use GDO\DB\GDT_Index;
 /**
  * Abstract Tree class stolen from http://articles.sitepoint.com/article/hierarchical-data-database/3
  * To select a partial of the tree look for items that have a LEFT between parent left and right.
@@ -27,7 +28,8 @@ class GDO_Tree extends GDO
 			GDT_Int::make($pre.'_depth')->unsigned()->bytes(1),
 			GDT_Int::make($pre.'_left')->unsigned(),
 			GDT_Int::make($pre.'_right')->unsigned(),
-// 		    @TODO: create index on _left
+		    GDT_Index::make($pre.'_left_index')->btree()->indexColumns($pre.'_left'),
+		    GDT_Index::make($pre.'_parent_index')->btree()->indexColumns($pre.'_parent'),
 		);
 	}
 	public function getIDColumn() { return $this->gdoPrimaryKeyColumn()->identifier(); }
