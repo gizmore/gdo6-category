@@ -8,13 +8,26 @@ use GDO\DB\GDT_String;
 use GDO\DB\GDT_Index;
 
 /**
- * Abstract Tree class stolen from http://articles.sitepoint.com/article/hierarchical-data-database/3
+ * Abstract Tree class stolen from sitepoint.
  * To select a partial of the tree look for items that have a LEFT between parent left and right.
+ * 
+ * @see http://articles.sitepoint.com/article/hierarchical-data-database/3
  * @author gizmore
+ * @version 6.10
+ * @since 6.02
  */
 class GDO_Tree extends GDO
 {
-	public function gdoTreePrefix() { return 'tree'; }
+    /**
+     * @var self[]
+     */
+    public $children = [];
+    
+    /**
+     * 
+     * @return string
+     */
+    public function gdoTreePrefix() { return 'tree'; }
 
 	###########
 	### GDO ###
@@ -33,6 +46,7 @@ class GDO_Tree extends GDO
 		    GDT_Index::make($pre.'_parent_index')->btree()->indexColumns($pre.'_parent'),
 		);
 	}
+	
 	public function getIDColumn() { return $this->gdoPrimaryKeyColumn()->identifier(); }
 	public function getParentColumn() { return $this->gdoTreePrefix().'_parent'; }
 	public function getParentID() { return $this->getVar($this->getParentColumn()); }
@@ -55,13 +69,16 @@ class GDO_Tree extends GDO
 	################
 	public function getTreeIDWhereClause()
 	{
-	    $pre = $this->gdoTreePrefix();
-	    $left = $pre.'_left';
+	    $left = $this->getLeftColumn();
 	    $l = $this->getLeft();
 	    $r = $this->getRight();
 	    return "$left BETWEEN $l AND $r";
 	}
 	
+	/**
+	 * Get sub tree.
+	 * @return self[]
+	 */
 	public function getTree()
 	{
 	    $pre = $this->gdoTreePrefix();
@@ -77,17 +94,10 @@ class GDO_Tree extends GDO
 	/**
 	 * @return self[]
 	 */
-	public function all()
+	public function all($order=null, $asc=true)
 	{
-		return $this->table()->select()->
-		  orderASC($this->getLeftColumn())->
-		  exec()->fetchAllArray2dObject();
+		return parent::all($order?$order:$this->getLeftColumn(), $asc);
 	}
-	
-	/**
-	 * @var self[]
-	 */
-	public $children = [];
 	
 	/**
 	 * Get all items as all and only roots (those with no parent)
@@ -95,11 +105,6 @@ class GDO_Tree extends GDO
 	 */
 	public function full()
 	{
-// 	    static $result = null;
-// 	    if ($result !== null)
-// 	    {
-// 	        return $result;
-// 	    }
 		$roots = [];
 		$tree = $this->table()->all();
 		

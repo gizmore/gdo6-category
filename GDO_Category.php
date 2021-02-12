@@ -1,15 +1,14 @@
 <?php
 namespace GDO\Category;
 
-use GDO\DB\Cache;
 use GDO\DB\GDT_AutoInc;
 use GDO\DB\GDT_Name;
+
 /**
- * GDO_Category table inherits Tree.
- * 
+ * GDO_Category table. Inherits Tree.
  * @author gizmore
+ * @version 6.0
  * @since 2.0
- * @version 5.0
  */
 final class GDO_Category extends GDO_Tree
 {
@@ -20,10 +19,10 @@ final class GDO_Category extends GDO_Tree
 	public function gdoTreePrefix() { return 'cat'; }
 	public function gdoColumns()
 	{
-		return array_merge(array(
+		return array_merge([
 			GDT_AutoInc::make('cat_id'),
 			GDT_Name::make('cat_name'),
-		), parent::gdoColumns());
+		], parent::gdoColumns());
 	}
 
 	##############
@@ -38,21 +37,8 @@ final class GDO_Category extends GDO_Tree
 	#############
 	public function rebuildFullTree()
 	{
-		Cache::remove('gdo_category');
+	    $this->uncacheAll();
 		parent::rebuildFullTree();
-	}
-	public function all()
-	{
-		if (false === ($cache = Cache::get('gdo_category')))
-		{
-			$cache = self::table()->select('*')->orderASC('cat_left')->exec()->fetchAllArray2dObject();
-			Cache::set('gdo_category', $cache);
-		}
-		else
-		{
-		    Cache::heat('gdo_category', $cache);
-		}
-		return $cache;
 	}
 	
 	##############
@@ -62,9 +48,10 @@ final class GDO_Category extends GDO_Tree
 	{
 		return GDT_Category::make('cat')->gdo($this)->renderCell();
 	}
+
 	public function renderChoice()
 	{
 		return GDT_Category::make('cat')->gdo($this)->renderChoice();
-		
 	}
+
 }
