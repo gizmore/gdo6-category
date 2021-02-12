@@ -6,6 +6,7 @@ use GDO\DB\GDT_Object;
 use GDO\DB\GDT_Int;
 use GDO\DB\GDT_String;
 use GDO\DB\GDT_Index;
+
 /**
  * Abstract Tree class stolen from http://articles.sitepoint.com/article/hierarchical-data-database/3
  * To select a partial of the tree look for items that have a LEFT between parent left and right.
@@ -65,7 +66,9 @@ class GDO_Tree extends GDO
 	{
 	    $pre = $this->gdoTreePrefix();
 	    $left = $pre.'_left';
-	    return $this->select('*')->where($this->getTreeIDWhereClause())->orderASC($left)->exec()->fetchAllObjects();
+	    return $this->select('*')->
+    	    where($this->getTreeIDWhereClause())->
+    	    orderASC($left)->exec()->fetchAllObjects();
 	}
 	
 	###############
@@ -76,7 +79,9 @@ class GDO_Tree extends GDO
 	 */
 	public function all()
 	{
-		return $this->table()->select()->orderASC($this->getLeftColumn())->exec()->fetchAllArray2dObject();
+		return $this->table()->select()->
+		  orderASC($this->getLeftColumn())->
+		  exec()->fetchAllArray2dObject();
 	}
 	
 	/**

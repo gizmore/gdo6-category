@@ -26,8 +26,8 @@ final class Rebuild extends MethodForm
 	{
 		$form->addFields(array(
 			GDT_AntiCSRF::make(),
-			GDT_Submit::make(),
 		));
+		$form->actions()->addField(GDT_Submit::make());
 	}
 	
 	public function formValidated(GDT_Form $form)
