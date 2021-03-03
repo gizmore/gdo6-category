@@ -94,7 +94,7 @@ class GDO_Tree extends GDO
 	/**
 	 * @return self[]
 	 */
-	public function all($order=null, $asc=true)
+	public function &all($order=null, $asc=true)
 	{
 		return parent::all($order?$order:$this->getLeftColumn(), $asc);
 	}
