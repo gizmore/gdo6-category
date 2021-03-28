@@ -13,13 +13,15 @@ final class Rebuild extends MethodForm
 {
     use MethodAdmin;
     
+    public function beforeExecute()
+    {
+        $this->renderNavBar();
+        Module_Category::instance()->renderAdminTabs();
+    }
+    
     public function execute()
 	{
-		$module = Module_Category::instance();
-		return $this->renderNavBar()->
-            add($module->renderAdminTabs())->
-    		add(parent::execute())->
-    		add($this->renderTree());
+        return parent::execute()->add($this->renderTree());
 	}
 	
 	public function createForm(GDT_Form $form)

@@ -22,12 +22,10 @@ final class Crud extends MethodCrud
     
 	public function getPermission() { return 'staff'; }
 	
-	public function renderPage()
+	public function beforeExecute()
 	{
-	    
-	    return $this->renderNavBar()->
-	       add(Module_Category::instance()->renderAdminTabs())->
-	       add(parent::renderPage());
+	    $this->renderNavBar();
+	    Module_Category::instance()->renderAdminTabs();
 	}
 	
 	public function gdoTable()

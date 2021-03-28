@@ -10,8 +10,14 @@ final class Overview extends Method
     
     public function getPermission() { return 'staff'; }
 	
+    public function beforeExecute()
+    {
+        $this->renderNavBar();
+    }
+    
 	public function execute()
 	{
-		return $this->renderNavBar()->add($this->templatePHP('overview.php'));
+		return $this->templatePHP('overview.php');
 	}
+
 }
