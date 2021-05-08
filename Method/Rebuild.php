@@ -21,7 +21,7 @@ final class Rebuild extends MethodForm
     
     public function execute()
 	{
-        return parent::execute()->add($this->renderTree());
+        return parent::execute()->addField($this->renderTree());
 	}
 	
 	public function createForm(GDT_Form $form)
