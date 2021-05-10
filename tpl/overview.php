@@ -1,12 +1,9 @@
 <?php
 use GDO\Category\GDO_Category;
-use GDO\Category\Module_Category;
 use GDO\Table\GDT_Table;
 use GDO\UI\GDT_Button;
 
 $gdo = GDO_Category::table();
-$module = Module_Category::instance();
-echo $module->renderAdminTabs()->render(); 
 
 # Render table with this query
 $query = $gdo->select('*');
@@ -17,5 +14,5 @@ $table->addHeaders(array(
 	GDT_Button::make('btn_edit'),
 ));
 $table->query($query);
-$table->paginate(true);
+$table->paginated();
 echo $table->render();

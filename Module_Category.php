@@ -1,10 +1,8 @@
 <?php
 namespace GDO\Category;
 
-use GDO\Core\Application;
 use GDO\Core\GDO_Module;
 use GDO\UI\GDT_Page;
-use GDO\Core\GDT_Template;
 
 final class Module_Category extends GDO_Module
 {
@@ -19,10 +17,8 @@ final class Module_Category extends GDO_Module
 	##############
 	public function renderAdminTabs()
 	{
-	    if (Application::instance()->isHTML())
-	    {
-	        GDT_Page::$INSTANCE->topTabs->addField(GDT_Template::make()->template('Category', 'admin_tabs.php'));
-	    }
+	    GDT_Page::$INSTANCE->topTabs->addField(
+	        $this->templatePHP('admin_tabs.php'));
 	}
 	
 }

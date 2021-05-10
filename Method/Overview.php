@@ -3,6 +3,7 @@ namespace GDO\Category\Method;
 
 use GDO\Core\Method;
 use GDO\Core\MethodAdmin;
+use GDO\Account\Module_Account;
 
 final class Overview extends Method
 {
@@ -13,6 +14,7 @@ final class Overview extends Method
     public function beforeExecute()
     {
         $this->renderNavBar();
+        Module_Account::instance()->renderAdminTabs();
     }
     
 	public function execute()
