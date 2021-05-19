@@ -37,11 +37,11 @@ class GDO_Tree extends GDO
 	{
 		$pre = $this->gdoTreePrefix();
 		return array(
-			GDT_Object::make($pre.'_parent')->table(GDO::tableFor($this->gdoClassName())),
-			GDT_String::make($pre.'_path')->binary()->max(128),
-			GDT_Int::make($pre.'_depth')->unsigned()->bytes(1),
-			GDT_Int::make($pre.'_left')->unsigned(),
-			GDT_Int::make($pre.'_right')->unsigned(),
+		    GDT_Object::make($pre.'_parent')->table(GDO::tableFor($this->gdoClassName()))->searchable(false),
+		    GDT_String::make($pre.'_path')->binary()->max(128)->searchable(false),
+			GDT_Int::make($pre.'_depth')->unsigned()->bytes(1)->searchable(false),
+		    GDT_Int::make($pre.'_left')->unsigned()->searchable(false),
+		    GDT_Int::make($pre.'_right')->unsigned()->searchable(false),
 		    GDT_Index::make($pre.'_left_index')->btree()->indexColumns($pre.'_left'),
 		    GDT_Index::make($pre.'_parent_index')->btree()->indexColumns($pre.'_parent'),
 		);
