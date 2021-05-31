@@ -85,7 +85,7 @@ class GDO_Tree extends GDO
 	    $left = $pre.'_left';
 	    return $this->select('*')->
     	    where($this->getTreeIDWhereClause())->
-    	    orderASC($left)->exec()->fetchAllObjects();
+    	    order($left)->exec()->fetchAllObjects();
 	}
 	
 	###############
