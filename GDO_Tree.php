@@ -63,7 +63,7 @@ class GDO_Tree extends GDO
 	/**
 	 * @return self[]
 	 */
-	public function all()
+	public function &all($order=null, $asc=true)
 	{
 		return $this->table()->select()->orderASC($this->getLeftColumn())->exec()->fetchAllArray2dObject();
 	}
