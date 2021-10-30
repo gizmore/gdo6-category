@@ -43,7 +43,7 @@ final class Crud extends MethodCrud
 		$table = $this->gdoTable();
 		$form->addFields(array(
 			$table->gdoColumn('cat_name'),
-			GDT_Category::make('cat_parent')->emptyLabel('select_parent_category'),
+			GDT_Category::make('cat_parent')->label('parent')->emptyLabel('select_parent_category'),
 		));
 		$this->createFormButtons($form);
 	}

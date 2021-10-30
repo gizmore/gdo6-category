@@ -9,7 +9,7 @@ return array(
 'msg_category_added' => 'Ihre Kategorie wurde zugefügt.',
 ##########################################
 'ft_category_rebuild' => 'Den Kategorie-Baum neu aufbauen',
-'msg_cat_tree_rebuilt' => 'Der Kategorie-Baum wurde neu afgebaut',
+'msg_cat_tree_rebuilt' => 'Der Kategorie-Baum wurde neu aufgebaut',
 'tree' => 'Baum',
 'sel_no_category' => 'Keine Kategorie',
 );

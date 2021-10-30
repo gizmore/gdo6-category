@@ -8,6 +8,7 @@ $gdo = GDO_Category::table();
 # Render table with this query
 $query = $gdo->select('*');
 $table = GDT_Table::make();
+$table->setupHeaders(false, true);
 $table->addHeaders(array(
 	$gdo->gdoColumn('cat_id'),
 	$gdo->gdoColumn('cat_name'),

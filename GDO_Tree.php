@@ -16,7 +16,7 @@ use GDO\DB\GDT_Index;
  * @version 6.10
  * @since 6.02
  */
-class GDO_Tree extends GDO
+abstract class GDO_Tree extends GDO
 {
     /**
      * @var self[]
@@ -73,6 +73,22 @@ class GDO_Tree extends GDO
 	    $l = $this->getLeft();
 	    $r = $this->getRight();
 	    return "$left BETWEEN $l AND $r";
+	}
+	
+	/**
+	 * @return self[]
+	 */
+	public function getChildren()
+	{
+	    if (!$this->children)
+	    {
+    	    $p = $this->getParentColumn();
+    	    $condition = "{$p}={$this->getID()}";
+    	    $this->children = self::table()->select()->
+    	       where($condition)->
+    	       exec()->fetchAllObjects();
+	    }
+	    return $this->children;
 	}
 	
 	/**
