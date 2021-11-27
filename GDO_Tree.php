@@ -110,9 +110,10 @@ abstract class GDO_Tree extends GDO
 	/**
 	 * @return self[]
 	 */
-	public function &all($order=null, $asc=true)
+	public function &all($order=null, $json=false)
 	{
-		return parent::all($order?$order:$this->getLeftColumn(), $asc);
+		$order = $order ? $order : $this->getLeftColumn();
+		return parent::all($order, $json);
 	}
 	
 	/**
