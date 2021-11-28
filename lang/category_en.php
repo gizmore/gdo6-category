@@ -12,4 +12,5 @@ return array(
 'msg_cat_tree_rebuilt' => 'The category tree has been rebuilt',
 'tree' => 'Tree',
 'sel_no_category' => 'No category',
+'mtitle_category_overview' => 'Categories',
 );
