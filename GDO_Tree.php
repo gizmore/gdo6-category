@@ -112,7 +112,7 @@ abstract class GDO_Tree extends GDO
 	 */
 	public function &all($order=null, $json=false)
 	{
-		$order = $order ? $order : $this->getLeftColumn();
+		$order = $order ? $order : $this->gdoTableIdentifier().'.'.$this->getLeftColumn();
 		return parent::all($order, $json);
 	}
 	
@@ -205,7 +205,7 @@ abstract class GDO_Tree extends GDO
 		$idc = $this->getIDColumn();
 
 		$where = $parent ? "$p=$parent" : "$p IS NULL";
-		$result = $this->table()->select($idc)->where($where)->exec()->fetchAllValues();
+		$result = $this->table()->select($idc, false)->where($where)->exec()->fetchAllValues();
 		foreach ($result as $id)
 		{
 			$right = $this->rebuildTree($id, $right, $depth+1);
