@@ -37,7 +37,7 @@ abstract class GDO_Tree extends GDO
 	{
 		$pre = $this->gdoTreePrefix();
 		return array(
-		    GDT_Object::make($pre.'_parent')->table(GDO::tableFor($this->gdoClassName()))->searchable(false),
+		    GDT_Object::make($pre.'_parent')->noAutojoin()->table(GDO::tableFor($this->gdoClassName()))->searchable(false),
 		    GDT_String::make($pre.'_path')->binary()->max(128)->searchable(false),
 			GDT_Int::make($pre.'_depth')->unsigned()->bytes(1)->searchable(false),
 		    GDT_Int::make($pre.'_left')->unsigned()->searchable(false),
